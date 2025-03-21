@@ -1,231 +1,196 @@
-<%-- 
-    Document   : login
-    Created on : Mar 20, 2025, 9:36:58â€¯PM
-    Author     : FPT
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Log in - StarMsg</title>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
-
-<body>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100..900&family=Gilda+Display&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Gilda+Display&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
-
         :root {
-            --color-one: #BA9545;
-            --color-text: #232323;
-            --bg-1: #F1EDE8;
-
-            --font: 'Gilda Display', serif;
-            --font-2: 'Roboto', sans-serif;
-        }
-
-        * {
-            padding: 0;
-            margin: 0;
-            border: 0;
-            box-sizing: border-box !important;
+            --bg-color: #F1EDE8;
+            --text-dark: #1C1C1C;
+            --border-gray: #BBBBBB;
         }
 
         body {
-            background: var(--bg-1);
+            background: var(--bg-color);
+            font-family: 'Roboto', sans-serif;
         }
 
-        .login .inner-wrap {
+        .login-container {
             display: flex;
-            background: #fff;
-            width: 700px;
-            height: 500px;
-            margin-left: auto;
-            margin-right: auto;
-            margin-top: 50px;
-            padding: 50px;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
 
-        .login .inner-wrap .login-img {
+        .login-box {
+            background: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            overflow: hidden;
+        }
+
+        .login-image {
+            flex: 1;
             display: flex;
             flex-direction: column;
+            justify-content: center;
             align-items: center;
-            width: 40%;
-            margin-top: 30px;
+            padding: 20px;
+            text-align: center;
         }
 
-
-        .login .inner-wrap .login-img img {
-            width: 100%;
+        .login-image img {
+            max-width: 100%;
             height: auto;
+            border-radius: 10px;
+        }
+
+        .create-account {
+            margin-top: 10px;
+            text-decoration: underline;
+            color: var(--text-dark);
+        }
+
+        .login-form {
+            flex: 1;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .login-form h1 {
+            font-family: 'Gilda Display', serif;
+            font-size: 28px;
             margin-bottom: 20px;
         }
 
-        .login .inner-wrap .login-img a {
-            color: #000;
+        .input-group {
+            position: relative;
+            margin-bottom: 20px;
         }
 
-        .login .inner-wrap h1 {
-            font-family: var(--font-2);
-            text-transform: uppercase;
-            letter-spacing: 2px;
+        .input-group input {
+            width: 100%;
+            padding: 10px 15px 10px 40px;
+            border: 1px solid var(--border-gray);
+            border-radius: 5px;
+            font-size: 16px;
         }
 
-        .login .inner-wrap section {
-            margin-top: 20px;
+        .input-group i {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--border-gray);
+            font-size: 18px;
         }
 
-        .login .inner-wrap .flex {
-            margin-left: 50px;
+        .forgot-password {
+            font-size: 14px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .login .inner-wrap form input {
-            border: none;
-        }
-
-        .login .inner-wrap input:focus {
-            outline: none;
-        }
-
-        .login .inner-wrap .horizontal-line {
-            border-bottom: 1px solid #E5E5E5;
-            height: 10px;
-            width: 300px;
-            margin-bottom: 10px;
-        }
-
-        .login .inner-wrap .forgot-pass {
-            display: block;
-            text-align: right;
-        }
-
-        .login .inner-wrap .forgot-pass a {
-            color: #B4BBC3;
+        .forgot-password a {
+            color: var(--border-gray);
             text-decoration: none;
         }
 
-        .login .inner-wrap .button-one {
-            padding: 15px 100px;
-            margin-top: 40px;
-            background: #1B1B1B;
+        .message {
+            display: block;
+            text-align: left;
+            color: red;
+        }
+
+        .btn-login {
+            background: var(--text-dark);
             color: #fff;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            cursor: pointer;
+            padding: 10px;
+            border-radius: 5px;
+            width: 100%;
+            font-size: 16px;
         }
 
-        .login .inner-wrap .login-google {
+        .login-google {
             display: flex;
-            margin-top: 40px;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
         }
 
-        .login .inner-wrap .login-google span {
-            margin-top: 10px;
-        }
-
-        @media (max-width: 991.98px) {
-            .login .inner-wrap {
-                width: 600px;
-                height: 400px;
-                margin-left: auto;
-                margin-right: auto;
-                margin-top: 50px;
-                padding: 40px;
-            }
-        }
-
-        @media (max-width: 767.98px) {
-            .login .inner-wrap {
-                flex-wrap: wrap;
-                height: 800px;
-                width: 400px;
-                padding: 50px 0;
+        @media (max-width: 575.98px) {
+            .login-container {
+                align-items: flex-start;
+                padding-top: 20px;
             }
 
-            .login .inner-wrap .login-img {
-                width: 100%;
-                order: 2;
+            .login-box {
+                flex-direction: column-reverse;
+                align-items: center;
+                text-align: center;
             }
 
-            .login .inner-wrap .login-img img {
-                width: 40%;
-            }
-
-            .login .inner-wrap .flex {
-                width: 100%;
+            .login-image {
                 order: 1;
             }
 
-            .login .inner-wrap .forgot-pass {
-                display: block;
-                margin-right: 50px;
-            }
-
-            .login .inner-wrap .button-one {
-                padding: 15px 120px;
-            
+            .login-form {
+                order: 2;
             }
         }
     </style>
+</head>
 
-    <div class="login">
-        <div class="inner-wrap">
-            <div class="login-img">
-                <img src='https://assets.astro-charts.com/site/lyra.png' alt="an illustration of goddess with Lyra">
-                <a href="#">Create an account</a>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <div class="login-image">
+                <img src="https://assets.astro-charts.com/site/lyra.png" alt="Astro Chart">
+                <a href="#" class="create-account">Create an account</a>
             </div>
-            <div class="flex">
-                <h1>Login</h1>
-                <form method="post" action="./login" id="login-form">
-                    <section>
-                        <div class="input-icon-wrap">
-                            <span class="input-icon">
-                                <i class="fa-solid fa-user"></i>
-                            </span>
-                            <label for="email" style="display:none">
-                                <span>Email</span>
-                            </label>
-                            <input id="id_username" name="username" type="text" placeholder="Your Email"
-                                autocomplete="off">
-                        </div>
-                    </section>
-
-                    <div class="horizontal-line"></div>
-
-                    <section>
-                        <div class="input-icon-wrap">
-                            <span class="input-icon">
-                                <i class="fa-solid fa-key"></i>
-                            </span>
-                            <label for="password" style="display:none">
-                                <span>Password</span>
-                            </label>
-                            <input id="id_password" name="password" type="password" placeholder="Your Password"
-                                autocomplete="off">
-                        </div>
-                    </section>
-
-                    <div class="horizontal-line"></div>
-
-                    <div>
-                        <span class="forgot-pass"><a href="#">Forgot Password?</a></span>
-                        <button class="button button-one" id="login" type="submit">Login</button>
-                        <input type="hidden" name="next" value="" />
+            <div class="login-form">
+                <h1>LOGIN</h1>
+                <form method="post" action="./login">
+                    <div class="input-group">
+                        <i class="fa-solid fa-user"></i>
+                        <input type="text" name="username" placeholder="Your User Name" required>
                     </div>
-                </form>
+                    <div class="input-group">
+                        <i class="fa-solid fa-key"></i>
+                        <input type="password" name="password" placeholder="Your Password" required>
+                    </div>
+                    <div class="forgot-password">
+                        <%
+                            HttpSession sessionObj = request.getSession();
+                            String message = (String) sessionObj.getAttribute("message");
+                            if (message != null) {
+                        %>
+                        <span class="message"><%= message%></span>
+                        <%
+                                sessionObj.removeAttribute("message"); // Xóa thông báo sau khi hi?n th?
+                            }
+                        %>
 
+                        <a href="#">Forgot Password?</a>
+                    </div>
+                    <button class="btn btn-login" type="submit">LOGIN</button>
+                </form>
                 <div class="login-google">
                     <span>Or:</span>
-                    <a id="google-oauth2-button" name="google oauth2" href="#">
-                        <img src="https://astro-charts.com/client/common/images/site/btn_google.696c081ae56a.png">
+                    <a href="#">
+                        <img src="https://astro-charts.com/client/common/images/site/btn_google.696c081ae56a.png" alt="Google Login">
                     </a>
                 </div>
             </div>
@@ -234,5 +199,3 @@
 </body>
 
 </html>
-
-
