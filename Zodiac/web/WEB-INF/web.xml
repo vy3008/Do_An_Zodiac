@@ -4,8 +4,16 @@
         <servlet-name>ProcessLogin</servlet-name>
         <servlet-class>controller.ProcessLogin</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ProcessHomePage</servlet-name>
+        <servlet-class>controller.ProcessHomePage</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ProcessLogin</servlet-name>
         <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProcessHomePage</servlet-name>
+        <url-pattern>/home</url-pattern>
     </servlet-mapping>
 </web-app>
