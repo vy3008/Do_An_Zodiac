@@ -8,6 +8,14 @@
         <servlet-name>ProcessHomePage</servlet-name>
         <servlet-class>controller.ProcessHomePage</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ProcessRegister</servlet-name>
+        <servlet-class>controller.ProcessRegister</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ProcessCreateUser</servlet-name>
+        <servlet-class>controller.ProcessCreateUser</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ProcessLogin</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -15,5 +23,13 @@
     <servlet-mapping>
         <servlet-name>ProcessHomePage</servlet-name>
         <url-pattern>/home</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProcessRegister</servlet-name>
+        <url-pattern>/register</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProcessCreateUser</servlet-name>
+        <url-pattern>/create-user</url-pattern>
     </servlet-mapping>
 </web-app>

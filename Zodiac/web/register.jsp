@@ -144,7 +144,13 @@
             font-size: 16px;
             cursor: pointer;
         }
-
+        
+        .message {
+            display: block;
+            text-align: left;
+            color: red;
+        }
+        
         @media (max-width: 768px) {
             .signup-box {
                 flex-direction: column;
@@ -164,7 +170,7 @@
         <div class="signup-box">
             <div class="left">
                 <img src="https://assets.astro-charts.com/site/lyra.png" alt="Astro Chart">
-                <a href="#">Already have an account? Login here</a>
+                <a href="./login">Already have an account? Login here</a>
             </div>
             <div class="right">
                 <h1>WELCOME</h1>
@@ -175,7 +181,7 @@
                     </a>
                 </div>
                 <span class="or-text">Or</span>
-                <form method="post" action="./create-user">
+                <form method="POST" action="./create-user">
                     <div class="input-group">
                         <i class="fa-solid fa-user"></i>
                         <input type="text" name="username" placeholder="Your User Name" required>
@@ -188,6 +194,10 @@
                         <i class="fa-solid fa-key"></i>
                         <input type="password" name="cfmpassword" placeholder="Your Comfirm Password" required>
                     </div>
+                    <%String message = (String)request.getAttribute("message");%>
+                        <% if(message != null) { %>
+                            <span class="message"><%= message %></span> 
+                    <% } %>
                     <div class="g-recaptcha" data-sitekey="your-site-key"></div>
                     <button class="btn-signup" type="submit">SIGN UP</button>
                 </form>

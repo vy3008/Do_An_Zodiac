@@ -7,7 +7,8 @@ import java.sql.ResultSet;
 import model.User;
 
 public class UserDAO {
-     public static Connection openConnection() {
+
+    public static Connection openConnection() {
         Connection conn = null;
         try {
             System.out.println("Hello from DBConfig.driver " + DBConfig.driver);
@@ -19,8 +20,8 @@ public class UserDAO {
         }
         return conn;
     }
-     
-     public static User handleLogin(String username, String password) {
+
+    public static User handleLogin(String username, String password) {
         String query = "SELECT * FROM users WHERE username = ? AND password = ?";
         try (Connection c = openConnection(); PreparedStatement ps = c.prepareStatement(query)) {
             ps.setString(1, username);
@@ -35,8 +36,39 @@ public class UserDAO {
             }
         } catch (Exception ex) {
             System.err.println("Error during login: " + ex.getMessage());
-            ex.printStackTrace(); 
+            ex.printStackTrace();
         }
-        return null; 
+        return null;
     }
+
+    public static boolean isExistUsername(String username) {
+        String query = "SELECT 1 FROM users WHERE username = ?";
+        try (Connection c = openConnection(); PreparedStatement ps = c.prepareStatement(query)) {
+            ps.setString(1, username);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return true;  
+                }
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return false; 
+    }
+
+    public static boolean insertUser(User user) {
+        String query = "INSERT INTO USERS(username, password, cfmpassword) VALUES (?, ?, ?)";
+        try (Connection c = openConnection(); PreparedStatement ps = c.prepareStatement(query)) {
+            ps.setString(1, user.getUsername());
+            ps.setString(2, user.getPassword());
+            ps.setString(3, user.getCfmpassword());
+
+            int row = ps.executeUpdate();
+            return row > 0; 
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return false;
+    }
+
 }

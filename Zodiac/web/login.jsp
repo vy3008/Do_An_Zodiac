@@ -158,7 +158,7 @@
         <div class="login-box">
             <div class="login-image">
                 <img src="https://assets.astro-charts.com/site/lyra.png" alt="Astro Chart">
-                <a href="#" class="create-account">Create an account</a>
+                <a href="./register" class="create-account">Create an account</a>
             </div>
             <div class="login-form">
                 <h1>LOGIN</h1>
