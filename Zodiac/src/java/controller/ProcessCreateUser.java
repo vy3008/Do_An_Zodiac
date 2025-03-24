@@ -47,7 +47,6 @@ public class ProcessCreateUser extends HttpServlet {
             response.sendRedirect("./login"); // Đăng ký thành công, chuyển sang trang login
         }
     }
-
     @Override
     public String getServletInfo() {
         return "Xử lý đăng ký tài khoản";
