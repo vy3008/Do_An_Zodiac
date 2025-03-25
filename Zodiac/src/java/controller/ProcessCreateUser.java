@@ -36,7 +36,7 @@ public class ProcessCreateUser extends HttpServlet {
         }
 
         // Nếu mọi thứ OK, mới tạo User và lưu vào DB
-        User user = new User(username, password, confirmPassword);
+        User user = new User(username, password);
         boolean isCreated = UserDAO.insertUser(user);
 
         if (!isCreated) {

@@ -57,12 +57,10 @@ public class UserDAO {
     }
 
     public static boolean insertUser(User user) {
-        String query = "INSERT INTO USERS(username, password, cfmpassword) VALUES (?, ?, ?)";
+        String query = "INSERT INTO USERS(username, password) VALUES (?, ?)";
         try (Connection c = openConnection(); PreparedStatement ps = c.prepareStatement(query)) {
             ps.setString(1, user.getUsername());
             ps.setString(2, user.getPassword());
-            ps.setString(3, user.getCfmpassword());
-
             int row = ps.executeUpdate();
             return row > 0; 
         } catch (Exception ex) {
