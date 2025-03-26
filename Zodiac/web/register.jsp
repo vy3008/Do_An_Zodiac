@@ -175,12 +175,6 @@
             <div class="right">
                 <h1>WELCOME</h1>
                 <p class="inner-desc">Create a free account to save your astrology charts. Sign up using your Google account or by entering an email and password below.</p>
-                <div class="google-signin">
-                    <a href="#">
-                        <img src="https://astro-charts.com/client/common/images/site/btn_google.696c081ae56a.png" alt="Google Sign In">
-                    </a>
-                </div>
-                <span class="or-text">Or</span>
                 <form method="POST" action="./create-user">
                     <div class="input-group">
                         <i class="fa-solid fa-user"></i>
