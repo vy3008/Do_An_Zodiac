@@ -40,7 +40,7 @@ public class UserDAO {
         }
         return null;
     }
-
+    
     public static boolean isExistUsername(String username) {
         String query = "SELECT 1 FROM users WHERE username = ?";
         try (Connection c = openConnection(); PreparedStatement ps = c.prepareStatement(query)) {

@@ -7,6 +7,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import model.User;
 
 public class ProcessCreateUser extends HttpServlet {
@@ -24,7 +25,7 @@ public class ProcessCreateUser extends HttpServlet {
             request.setAttribute("message", "Tài khoản đã tồn tại!");
             RequestDispatcher dis = request.getRequestDispatcher("register.jsp");
             dis.forward(request, response);
-            return; // Dừng luôn, không cần kiểm tra tiếp
+            return;
         }
 
         // Kiểm tra mật khẩu có trùng khớp không
@@ -44,7 +45,12 @@ public class ProcessCreateUser extends HttpServlet {
             RequestDispatcher dis = request.getRequestDispatcher("register.jsp");
             dis.forward(request, response);
         } else {
-            response.sendRedirect("./login"); // Đăng ký thành công, chuyển sang trang login
+            // Đăng ký thành công -> Lưu user vào session
+            HttpSession session = request.getSession();
+            session.setAttribute("user", username);
+
+            // Chuyển sang trang home
+            response.sendRedirect("./home");
         }
     }
     @Override
