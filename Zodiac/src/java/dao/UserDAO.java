@@ -40,11 +40,7 @@ public class UserDAO {
         }
         return null;
     }
-<<<<<<< HEAD
-    
-=======
-    //Kiểm tra người dùng đã có tồn tải chưa
->>>>>>> 3fa1bd8bde2123fde85a0379a2f1384a42aec52c
+
     public static boolean isExistUsername(String username) {
         String query = "SELECT 1 FROM users WHERE username = ?";
         try (Connection c = openConnection(); PreparedStatement ps = c.prepareStatement(query)) {
