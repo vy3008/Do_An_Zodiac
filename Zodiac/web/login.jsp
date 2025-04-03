@@ -187,12 +187,6 @@
                     </div>
                     <button class="btn btn-login" type="submit">LOGIN</button>
                 </form>
-                <div class="login-google">
-                    <span>Or:</span>
-                    <a href="#">
-                        <img src="https://astro-charts.com/client/common/images/site/btn_google.696c081ae56a.png" alt="Google Login">
-                    </a>
-                </div>
             </div>
         </div>
     </div>

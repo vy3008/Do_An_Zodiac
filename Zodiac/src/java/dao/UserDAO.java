@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import model.User;
 
 public class UserDAO {
-
+    //Kết nối database
     public static Connection openConnection() {
         Connection conn = null;
         try {
@@ -20,7 +20,7 @@ public class UserDAO {
         }
         return conn;
     }
-
+    //Xử lý login 
     public static User handleLogin(String username, String password) {
         String query = "SELECT * FROM users WHERE username = ? AND password = ?";
         try (Connection c = openConnection(); PreparedStatement ps = c.prepareStatement(query)) {
@@ -40,7 +40,11 @@ public class UserDAO {
         }
         return null;
     }
+<<<<<<< HEAD
     
+=======
+    //Kiểm tra người dùng đã có tồn tải chưa
+>>>>>>> 3fa1bd8bde2123fde85a0379a2f1384a42aec52c
     public static boolean isExistUsername(String username) {
         String query = "SELECT 1 FROM users WHERE username = ?";
         try (Connection c = openConnection(); PreparedStatement ps = c.prepareStatement(query)) {
@@ -55,7 +59,7 @@ public class UserDAO {
         }
         return false; 
     }
-
+    //Thêm người dùng vào database
     public static boolean insertUser(User user) {
         String query = "INSERT INTO USERS(username, password) VALUES (?, ?)";
         try (Connection c = openConnection(); PreparedStatement ps = c.prepareStatement(query)) {
@@ -68,5 +72,4 @@ public class UserDAO {
         }
         return false;
     }
-
 }

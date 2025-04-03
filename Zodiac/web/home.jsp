@@ -170,7 +170,7 @@
                         <div class="inner-head">
                             <div class="inner-logo-mobi">
                                 <a href="#">
-                                    <span>AC</span>
+                                    <span>SM</span>
                                 </a>
                             </div>
                             <div class="inner-menu">
