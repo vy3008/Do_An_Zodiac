@@ -7,6 +7,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -102,8 +103,20 @@ public class ProcessCung extends HttpServlet {
         request.setAttribute("LoveMessageForSign", LoveMessageForSign);
         request.setAttribute("StudyMessageForSign", StudyMessageForSign);
         request.setAttribute("ZodiacSign", ZodiacSign);
+        
 
-        // Chuyển hướng sang trang JSP để hiển thị kết quả
+        HttpSession session = request.getSession(false); // không tạo mới session
+        Object user = (session != null) ? session.getAttribute("username") : null;
+
+        if (user != null) {
+            // Nếu đã đăng nhập, hiển thị thêm các thông điệp
+            request.setAttribute("MessageForSign", MessageForSign);
+            request.setAttribute("HealthMessageForSign", HealthMessageForSign);
+            request.setAttribute("LoveMessageForSign", LoveMessageForSign);
+            request.setAttribute("StudyMessageForSign", StudyMessageForSign);
+        }
+
+        // Chuyển hướng đến trang JSP để hiển thị kết quả
         RequestDispatcher dispatcher = request.getRequestDispatcher("cung.jsp");
         dispatcher.forward(request, response);
 

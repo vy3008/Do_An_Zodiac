@@ -326,6 +326,10 @@
                 height: 2px;
                 background-color: #E5E5E5;
             }
+            .section-one .inner-desc .btn-danger {
+                margin-top: 20px;
+                font-size: 32px;
+            }
         </style>
 
         <div class="section-one">
@@ -528,15 +532,32 @@
                     <div class="col-xl-12">
                         <div class="inner-desc">
                             <%
-                                String message = (String) request.getAttribute("MessageForSign");
-                                String ealthMessage = (String) request.getAttribute("HealthMessageForSign");
-                                String loveMessage = (String) request.getAttribute("LoveMessageForSign");
-                                String studyMessage= (String) request.getAttribute("StudyMessageForSign");
+                                // Kiểm tra xem người dùng đã đăng nhập chưa
+                                String username = (String) session.getAttribute("username");
+                                if (username != null) { // Nếu đã đăng nhập
+                                    String message = (String) request.getAttribute("MessageForSign");
+                                    String healthMessage = (String) request.getAttribute("HealthMessageForSign");
+                                    String loveMessage = (String) request.getAttribute("LoveMessageForSign");
+                                    String studyMessage = (String) request.getAttribute("StudyMessageForSign");
                             %>
-                            <p><%= message%></p>
-                            <p><%= ealthMessage%></p>
-                            <p><%= loveMessage%></p>
-                            <p><%= studyMessage%></p>
+                            <p><strong>General Message:</strong> <%= message%></p>
+                            <p><strong>Health:</strong> <%= healthMessage%></p>
+                            <p><strong>Love:</strong> <%= loveMessage%></p>
+                            <p><strong>Study:</strong> <%= studyMessage%></p>
+
+                            
+                            <form method="post" action="./logout">
+                                <button type="submit" class="btn btn-danger">Logout</button>
+                            </form>
+                            <%
+                            } else { 
+                            %>
+
+                            <p><strong>You are:</strong> <%= ZodiacSign%></p>
+                            <p><em>Login to see your personalized horoscope!</em></p>
+                            <%
+                                }
+                            %>
                         </div>
                     </div>
                 </div>

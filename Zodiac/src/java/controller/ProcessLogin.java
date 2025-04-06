@@ -32,8 +32,12 @@ public class ProcessLogin extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
+
         User user = UserDAO.handleLogin(username, password);
+
         if (user != null) {
+            HttpSession session = request.getSession();
+            session.setAttribute("username", username);
             response.sendRedirect("./home");
         } else {
             HttpSession session = request.getSession();
