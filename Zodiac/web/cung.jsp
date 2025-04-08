@@ -540,10 +540,10 @@
                                     String loveMessage = (String) request.getAttribute("LoveMessageForSign");
                                     String studyMessage = (String) request.getAttribute("StudyMessageForSign");
                             %>
-                            <p><strong>General Message:</strong> <%= message%></p>
-                            <p><strong>Health:</strong> <%= healthMessage%></p>
-                            <p><strong>Love:</strong> <%= loveMessage%></p>
-                            <p><strong>Study:</strong> <%= studyMessage%></p>
+                            <p><%= message%></p>
+                            <p><%= healthMessage%></p>
+                            <p><%= loveMessage%></p>
+                            <p><%= studyMessage%></p>
 
                             
                             <form method="post" action="./logout">
@@ -553,7 +553,7 @@
                             } else { 
                             %>
 
-                            <p><strong>You are:</strong> <%= ZodiacSign%></p>
+                            
                             <p><em>Login to see your personalized horoscope!</em></p>
                             <%
                                 }

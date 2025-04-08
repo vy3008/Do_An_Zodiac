@@ -330,26 +330,26 @@
                         <form method="POST" action="./cung">
                             <div class="mb-3">
                                 <label class="form-label">My name is:</label>
-                                <input type="text" class="form-control" name="name" placeholder="Enter your name">
+                                <input type="text" class="form-control" name="name" placeholder="Enter your name" required>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">I was born in:</label>
                                 <input type="text" class="form-control" name="born"
-                                       placeholder="City, state, country">
+                                       placeholder="City, state, country" required>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">My date of birth is:</label>
                                 <div class="d-flex gap-2">
-                                    <input type="text" class="form-control" name="mm" placeholder="MM">
-                                    <input type="text" class="form-control" name="dd" placeholder="DD">
-                                    <input type="text" class="form-control" name="yyyy" placeholder="YYYY">
+                                    <input type="number" class="form-control" id="month" name="mm" placeholder="MM" maxlength="2">
+                                    <input type="number" class="form-control" id="day" name="dd" placeholder="DD" maxlength="2">
+                                    <input type="number" class="form-control" id="year" name="yyyy" placeholder="YYYY" maxlength="4">
                                 </div>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Time of birth:</label>
                                 <div class="d-flex gap-2">
-                                    <input type="text" class="form-control" name="hh" placeholder="hh">
-                                    <input type="text" class="form-control" name="mm" placeholder="mm">
+                                    <input type="number" class="form-control" id="hour" name="hh" placeholder="hh" required>
+                                    <input type="number" class="form-control" id="minute" name="min" placeholder="mm" required>
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="radio" name="ampm" id="am" value="AM">
                                         <label class="form-check-label" for="am">AM</label>
@@ -360,6 +360,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <div id="error-message" class="text-danger mb-2"></div>
                             <button type="submit" class="btn btn-dark">Create Chart</button>
                         </form>
                     </div>
@@ -459,6 +460,84 @@
 
         </script>
         <!-- End Form -->
+        <script>
+            document.querySelector("form").addEventListener("submit", function (e) {
+                let isValid = true;
+                let errorMessage = "";
+                const errorBox = document.getElementById("error-message");
+
+                const monthField = document.getElementById("month");
+                const dayField = document.getElementById("day");
+                const yearField = document.getElementById("year");
+                const hourField = document.getElementById("hour");
+                const minuteField = document.getElementById("minute");
+
+                const month = monthField.value.trim();
+                const day = dayField.value.trim();
+                const year = yearField.value.trim();
+                const hour = hourField.value.trim();
+                const minute = minuteField.value.trim();
+
+                // Reset lỗi
+                [monthField, dayField, yearField, hourField, minuteField].forEach(field => field.classList.remove("is-invalid"));
+
+                // Validate tháng
+                if (!/^\d{1,2}$/.test(month) || parseInt(month) < 1 || parseInt(month) > 12) {
+                    monthField.classList.add("is-invalid");
+                    errorMessage = "Enter a valid month (date format: MM/DD/YYYY)";
+                    isValid = false;
+                }
+
+                // Validate ngày
+                else if (!/^\d{1,2}$/.test(day) || parseInt(day) < 1 || parseInt(day) > 31) {
+                    dayField.classList.add("is-invalid");
+                    errorMessage = "Enter a valid day (date format: MM/DD/YYYY)";
+                    isValid = false;
+                }
+
+                // Validate năm
+                else if (!/^\d{4}$/.test(year) || parseInt(year) < 1900 || parseInt(year) > 2100) {
+                    yearField.classList.add("is-invalid");
+                    errorMessage = "Enter a valid year (date format: MM/DD/YYYY)";
+                    isValid = false;
+                }
+
+                // Validate giờ
+                else if (!/^\d{1,2}$/.test(hour) || parseInt(hour) < 1 || parseInt(hour) > 12) {
+                    hourField.classList.add("is-invalid");
+                    errorMessage = "Enter a valid hour (1–12)";
+                    isValid = false;
+                }
+
+                // Validate phút
+                else if (!/^\d{1,2}$/.test(minute) || parseInt(minute) < 0 || parseInt(minute) > 59) {
+                    minuteField.classList.add("is-invalid");
+                    errorMessage = "Enter a valid minute (0–59)";
+                    isValid = false;
+                }
+
+                if (!isValid) {
+                    e.preventDefault();
+                    errorBox.innerText = errorMessage;
+                } else {
+                    errorBox.innerText = "";
+                }
+            });
+
+            // Giới hạn độ dài khi gõ vào
+            const limitLength = (id, maxLength) => {
+                document.getElementById(id).addEventListener("input", function () {
+                    this.value = this.value.slice(0, maxLength);
+                });
+            };
+
+            limitLength("month", 2);
+            limitLength("day", 2);
+            limitLength("year", 4);
+            limitLength("hour", 2);
+            limitLength("minute", 2);
+        </script>
+
 
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
                 integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
