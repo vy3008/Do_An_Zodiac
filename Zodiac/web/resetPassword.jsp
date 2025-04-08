@@ -134,17 +134,21 @@
             </div>
             <div class="forgot-form">
                 <h1>Forgotten your password? Please enter your email below to reset it.</h1>
-                <form >
-                    <div class="input-group">
-                        <i class="fa-solid fa-key"></i>
-                        <input type="password" placeholder="New Password" required>
+                <form action="./reset-password" method="POST">
+                     <div class="input-group">
+                        <input type="hidden" name="username" value="${username}">
                     </div>
                     <div class="input-group">
                         <i class="fa-solid fa-key"></i>
-                        <input type="password" placeholder="Comfirm Password" required>
+                        <input type="password" name="newPassword" placeholder="New Password" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fa-solid fa-key"></i>
+                        <input type="password" name="confirmPassword" placeholder="Comfirm Password" required>
                     </div>
                     <button class="btn btn-forgot" type="submit">RESET PASSWORD</button>
                 </form>
+                <p style="color: red;">${message}</p>
             </div>
         </div>
     </div>

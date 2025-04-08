@@ -183,7 +183,7 @@
                             }
                         %>
 
-                        <a href="#">Forgot Password?</a>
+                        <a href="./forgot-password">Forgot Password?</a>
                     </div>
                     <button class="btn btn-login" type="submit">LOGIN</button>
                 </form>

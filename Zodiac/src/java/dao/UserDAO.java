@@ -68,4 +68,18 @@ public class UserDAO {
         }
         return false;
     }
+    
+    public static boolean updatePassword(String username, String newPassword) {
+        try (Connection c = openConnection()) {
+            String update = "UPDATE users SET password = ? WHERE username = ?";
+            PreparedStatement ps = c.prepareStatement(update);
+            ps.setString(1, newPassword);
+            ps.setString(2, username);
+            int row = ps.executeUpdate();
+            return row > 0;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return false;
+    }
 }

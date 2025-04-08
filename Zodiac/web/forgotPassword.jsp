@@ -134,11 +134,15 @@
             </div>
             <div class="forgot-form">
                 <h1>Forgotten your password? Please enter your email below to reset it.</h1>
-                <form >
+                <form method="POST" action="./forgot-password">
                     <div class="input-group">
                         <i class="fa-solid fa-user"></i>
-                        <input type="text" placeholder="Your User" required>
+                        <input type="text" placeholder="Your User" name="username" required>
                     </div>
+                    <%String message = (String) request.getAttribute("message");%>
+                    <% if (message != null) {%>
+                    <span><%= message%></span> 
+                    <% }%>
                     <button class="btn btn-forgot" type="submit">RESET PASSWORD</button>
                 </form>
             </div>
