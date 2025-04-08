@@ -128,6 +128,13 @@
             .header .inner-head .inner-logo-mobi {
                 display: none;
             }
+            
+            .header .inner-head .inner-info .inner-logout a {
+                color: #7A7A7A;
+                text-decoration: none;
+                font-family: var(--font);
+                margin-left: 30px;
+            }
   
             @media (max-width: 991.98px) {
                 .header .inner-head .inner-logo-mobi {
@@ -192,6 +199,11 @@
                                 <div class="inner-login">
                                     <a href="./login">
                                         Login
+                                    </a>
+                                </div>
+                                <div class="inner-logout">
+                                    <a href="./logout">
+                                        Logout
                                     </a>
                                 </div>
                             </div>
