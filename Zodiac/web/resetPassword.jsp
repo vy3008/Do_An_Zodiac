@@ -3,7 +3,6 @@
     Created on : Apr 8, 2025, 7:35:22 PM
     Author     : FPT
 --%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="en">
@@ -146,13 +145,27 @@
                         <i class="fa-solid fa-key"></i>
                         <input type="password" name="confirmPassword" placeholder="Comfirm Password" required>
                     </div>
-                    <button class="btn btn-forgot" type="submit">RESET PASSWORD</button>
+                        <button class="btn btn-forgot" type="submit">RESET PASSWORD</button>
                 </form>
-                <p style="color: red;">${message}</p>
+                <c:if test="${message ne 'success'}">
+                    <p style="color: red;">${message}</p>
+                </c:if>
             </div>
         </div>
     </div>
 </body>
+
+<% 
+    String msg = (String) request.getAttribute("message"); 
+    if ("success".equals(msg)) {
+%>
+    <script>
+        alert("Đặt lại mật khẩu thành công! Bạn sẽ được chuyển đến trang đăng nhập.");
+        window.location.href = "login.jsp";
+    </script>
+<% 
+    } 
+%>
 
 </html>
 

@@ -128,7 +128,7 @@
             .header .inner-head .inner-logo-mobi {
                 display: none;
             }
-
+  
             @media (max-width: 991.98px) {
                 .header .inner-head .inner-logo-mobi {
                     display: block;
@@ -546,9 +546,6 @@
                             <p><%= studyMessage%></p>
 
                             
-                            <form method="post" action="./logout">
-                                <button type="submit" class="btn btn-danger">Logout</button>
-                            </form>
                             <%
                             } else { 
                             %>

@@ -24,8 +24,9 @@ public class ProcessResetPassword extends HttpServlet {
             boolean updated = userDAO.updatePassword(username, newPassword);
 
             if (updated) {
-                message = "Password reset successful. You can now login.";
-                response.sendRedirect("login.jsp");
+                message = "success";
+                request.setAttribute("message", message);
+                request.getRequestDispatcher("resetPassword.jsp").forward(request, response);
                 return;
             } else {
                 message = "Failed to reset password. Please try again.";
@@ -33,7 +34,7 @@ public class ProcessResetPassword extends HttpServlet {
         }
 
         request.setAttribute("message", message);
-        request.getRequestDispatcher("reset-password.jsp").forward(request, response);
+        request.getRequestDispatcher("resetPassword.jsp").forward(request, response);
     }
 
     @Override
