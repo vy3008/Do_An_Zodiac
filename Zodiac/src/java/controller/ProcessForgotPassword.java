@@ -37,8 +37,8 @@ public class ProcessForgotPassword extends HttpServlet {
         boolean exists = userDAO.isExistUsername(username);
 
         if (exists) {
-            // Nếu username tồn tại, chuyển hướng đến trang reset password và truyền username theo request
-            request.setAttribute("username", username);
+            request.getSession().setAttribute("username", username);
+            request.getRequestDispatcher("resetPassword.jsp").forward(request, response);
             request.getRequestDispatcher("resetPassword.jsp").forward(request, response);
         } else {
             message = "Username not found! Please check again.";
