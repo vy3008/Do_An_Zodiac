@@ -191,6 +191,18 @@
                                 </a>
                             </div>
                             <div class="inner-info">
+                                <%
+                                    String username = (String) session.getAttribute("username");
+                                    if (username != null) {
+                                %>
+
+                                <div class="inner-logout">
+                                    <a href="./logout">Logout</a>
+                                </div>
+                                <%
+                                } else {
+                                %>
+
                                 <div class="inner-sign-up">
                                     <a href="./register">
                                         Sign Up
@@ -201,12 +213,11 @@
                                         Login
                                     </a>
                                 </div>
-                                <div class="inner-logout">
-                                    <a href="./logout">
-                                        Logout
-                                    </a>
-                                </div>
+                                <%
+                                    }
+                                %>
                             </div>
+
                             <div class="inner-menu-mobi">
                                 <i class="fa-solid fa-bars"></i>
                             </div>
@@ -545,7 +556,7 @@
                         <div class="inner-desc">
                             <%
                                 // Kiểm tra xem người dùng đã đăng nhập chưa
-                                String username = (String) session.getAttribute("username");
+//                                String username = (String) session.getAttribute("username");
                                 if (username != null) { // Nếu đã đăng nhập
                                     String message = (String) request.getAttribute("MessageForSign");
                                     String healthMessage = (String) request.getAttribute("HealthMessageForSign");
