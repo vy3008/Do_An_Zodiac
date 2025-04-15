@@ -151,6 +151,33 @@
             color: red;
         }
         
+        .success-popup {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 15px 20px;
+    border: 1px solid #c3e6cb;
+    border-radius: 8px;
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    animation: fadeIn 0.6s ease-out;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.success-popup i {
+    color: #28a745;
+    font-size: 18px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
         @media (max-width: 768px) {
             .signup-box {
                 flex-direction: column;
@@ -188,10 +215,30 @@
                         <i class="fa-solid fa-key"></i>
                         <input type="password" name="cfmpassword" placeholder="Your Comfirm Password" required>
                     </div>
-                    <%String message = (String)request.getAttribute("message");%>
-                        <% if(message != null) { %>
-                            <span class="message"><%= message %></span> 
+
+                    <%
+                        String message = (String) request.getAttribute("message");
+                        String success = (String) request.getAttribute("success");
+                    %>
+
+                    <% if (message != null) {%>
+                    <div class="error-popup">
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                        <p><%= message%></p>
+                    </div>
                     <% } %>
+
+                    <% if (success != null) {%>
+                    <div class="success-popup">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <p><%= success%></p>
+                    </div>
+                    <script>
+                        setTimeout(function () {
+                            window.location.href = "login.jsp";
+                        }, 3000);
+                    </script>
+                    <% }%>
                     <div class="g-recaptcha" data-sitekey="your-site-key"></div>
                     <button class="btn-signup" type="submit">SIGN UP</button>
                 </form>

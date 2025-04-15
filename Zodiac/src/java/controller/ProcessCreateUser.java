@@ -22,35 +22,30 @@ public class ProcessCreateUser extends HttpServlet {
 
         // Kiểm tra tài khoản đã tồn tại trước
         if (UserDAO.isExistUsername(username)) {
-            request.setAttribute("message", "Tài khoản đã tồn tại!");
+            request.setAttribute("message", "Account already exists!");
             RequestDispatcher dis = request.getRequestDispatcher("register.jsp");
             dis.forward(request, response);
             return;
         }
 
-        // Kiểm tra mật khẩu có trùng khớp không
         if (!password.equals(confirmPassword)) {
-            request.setAttribute("message", "Mật khẩu không trùng khớp!");
+            request.setAttribute("message", "Passwords do not match!");
             RequestDispatcher dis = request.getRequestDispatcher("register.jsp");
             dis.forward(request, response);
             return;
         }
 
-        // Nếu mọi thứ OK, mới tạo User và lưu vào DB
         User user = new User(username, password);
         boolean isCreated = UserDAO.insertUser(user);
 
         if (!isCreated) {
-            request.setAttribute("message", "Lỗi máy chủ, vui lòng thử lại!");
+            request.setAttribute("message", "Server error, please try again!");
             RequestDispatcher dis = request.getRequestDispatcher("register.jsp");
             dis.forward(request, response);
         } else {
-            // Đăng ký thành công -> Lưu user vào session
-            HttpSession session = request.getSession();
-            session.setAttribute("user", username);
-
-            // Chuyển sang trang home
-            response.sendRedirect("./home");
+            request.setAttribute("success", "Registration successful! You will be redirected to the login page shortly...");
+            RequestDispatcher dis = request.getRequestDispatcher("register.jsp");
+            dis.forward(request, response);
         }
     }
     @Override
