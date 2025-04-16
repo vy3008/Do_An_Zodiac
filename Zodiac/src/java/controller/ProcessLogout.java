@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -16,7 +15,9 @@ public class ProcessLogout extends HttpServlet {
         if (session != null) {
             session.invalidate(); // Hủy session
         }
-        response.sendRedirect("login.jsp"); // Quay lại trang login
+
+        // 👉 Quay về trang Home sau khi logout
+        response.sendRedirect("home.jsp");
     }
 
     @Override
@@ -24,17 +25,15 @@ public class ProcessLogout extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession(false);
         if (session != null) {
-            // Hủy session
-            session.invalidate();
+            session.invalidate(); // Hủy session
         }
-        
-        // Chuyển hướng người dùng về trang đăng nhập
-        response.sendRedirect("login.jsp");
+
+        // 👉 Quay về trang Home sau khi logout
+        response.sendRedirect("home.jsp");
     }
 
     @Override
     public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
+        return "Logout Servlet";
+    }
 }

@@ -77,47 +77,11 @@
                 display: flex;
             }
 
-            .header .inner-head .inner-info .inner-sign-up a {
+            .header .inner-head .inner-info a {
                 color: #7A7A7A;
                 text-decoration: none;
                 font-family: var(--font);
-            }
-
-            .header .inner-head .inner-info .inner-login a {
-                color: #7A7A7A;
-                text-decoration: none;
-                font-family: var(--font);
-            }
-
-            .header .inner-head .inner-info .inner-sign-up::after {
-                content: "/";
-                margin-right: 5px;
-                margin-left: 5px;
-                color: #7A7A7A;
-            }
-
-            .header .inner-head .inner-info .inner-notification {
-                position: relative;
-            }
-
-            .header .inner-head .inner-info .inner-notification a {
-                color: #7A7A7A;
-                font-size: 20px;
-            }
-
-            .header .inner-head .inner-info .inner-notification::after {
-                content: "0";
-                position: absolute;
-                width: 10px;
-                height: 10px;
-                top: 15px;
-                left: 10px;
-                border-radius: 50%;
-                background: #F1EDE8;
-                font-size: 8px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
+                margin-left: 10px;
             }
 
             .header .inner-head .inner-menu-mobi {
@@ -127,7 +91,7 @@
             .header .inner-head .inner-logo-mobi {
                 display: none;
             }
-                           
+
             @media (max-width: 991.98px) {
                 .header .inner-head .inner-logo-mobi {
                     display: block;
@@ -163,35 +127,36 @@
                 }
             }
         </style>
+
+        <%@ page session="true" %>
         <header class="header">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
                         <div class="inner-head">
                             <div class="inner-logo-mobi">
-                                <a href="#">
-                                    <span>SM</span>
-                                </a>
+                                <a href="#"><span>SM</span></a>
                             </div>
                             <div class="inner-menu">
                                 <i class="fa-solid fa-bars"></i>
                             </div>
                             <div class="inner-logo">
-                                <a href="#">
-                                    <span>StarMsg</span>
-                                </a>
+                                <a href="#"><span>StarMsg</span></a>
                             </div>
                             <div class="inner-info">
-                                <div class="inner-sign-up">
-                                    <a href="./register">
-                                        Sign Up
-                                    </a>
-                                </div>
-                                <div class="inner-login">
-                                    <a href="./login">
-                                        Login
-                                    </a>
-                                </div>
+                                <%
+                                    String username = (String) session.getAttribute("username");
+                                    if (username != null) {
+                                %>
+                                <a href="./logout">Logout</a>
+                                <%
+                                } else {
+                                %>
+                                <a href="./register">Sign Up</a>
+                                <a href="./login">Login</a>
+                                <%
+                                    }
+                                %>
                             </div>
                             <div class="inner-menu-mobi">
                                 <i class="fa-solid fa-bars"></i>
@@ -202,6 +167,7 @@
             </div>
         </header>
         <!-- End Header -->
+
 
         <!-- Menu -->
         <style>
