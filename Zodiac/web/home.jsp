@@ -293,7 +293,7 @@
                 <div class="row w-100">
                     <div class="col-md-6 p-4 inner-left">
                         <h5 class="text-warning">FILL IN YOUR DETAILS</h5>
-                        <form method="POST" action="./cung">
+                        <form method="POST" action="./cung" autocomplete="off">
                             <div class="mb-3">
                                 <label class="form-label">My name is:</label>
                                 <input type="text" class="form-control" name="name" placeholder="Enter your name" required>
