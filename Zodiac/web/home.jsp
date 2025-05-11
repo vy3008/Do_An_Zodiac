@@ -143,9 +143,23 @@
                             <div class="inner-logo">
                                 <a href="#"><span>StarMsg</span></a>
                             </div>
+                            <%
+                                String username = (String) session.getAttribute("username");
+                                if (username == null) {
+                                    Cookie[] cookies = request.getCookies();
+                                    if (cookies != null) {
+                                        for (Cookie cookie : cookies) {
+                                            if ("username".equals(cookie.getName())) {
+                                                username = cookie.getValue();
+                                                session.setAttribute("username", username); // Khôi phục session từ cookie
+                                                break;
+                                            }
+                                        }
+                                    }
+                                }
+                            %>
                             <div class="inner-info">
                                 <%
-                                    String username = (String) session.getAttribute("username");
                                     if (username != null) {
                                 %>
                                 <a href="./logout">Logout</a>
@@ -158,6 +172,7 @@
                                     }
                                 %>
                             </div>
+
                             <div class="inner-menu-mobi">
                                 <i class="fa-solid fa-bars"></i>
                             </div>
